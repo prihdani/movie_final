@@ -7,6 +7,10 @@ import progkor.movie_final.data.repository.Repository;
 import progkor.movie_final.service.MovieService;
 
 import java.util.List;
+/*
+* This class delegates operations to Repository
+* */
+
 @Service
 public class DeafultMovieService implements MovieService {
 

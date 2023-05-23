@@ -1,4 +1,4 @@
-package progkor.movie_final.web;
+package progkor.movie_final.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

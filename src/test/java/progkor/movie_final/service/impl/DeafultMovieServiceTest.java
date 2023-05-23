@@ -1,0 +1,64 @@
+package progkor.movie_final.service.impl;
+
+/*
+*  Test for DefaultMovieService
+* */
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import progkor.movie_final.data.model.Genre;
+import progkor.movie_final.data.model.Movie;
+import progkor.movie_final.data.repository.Repository;
+import progkor.movie_final.service.MovieService;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
+
+class DeafultMovieServiceTest {
+
+    private static final Long SOME_MOVIE_ID = 1L;
+    private static final Movie SOME_MOVIE = new Movie(1L,"randomTitle","unknownDirector",2025,18, Genre.ACTION);
+
+    @Mock
+    private Repository<Movie, Long> movieRepository;
+
+    private MovieService underTest;
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this); //meg kell jelolni, hogy melyik fuggosegbol akarunk mockolt osztalyt
+        underTest = new DeafultMovieService(movieRepository);
+    }
+
+    @Test
+    void createMovieShouldDelegateToRepositoryAndReturnSavedMovie() {
+        given(movieRepository.save(SOME_MOVIE)).willReturn(SOME_MOVIE); //a repository save metodusat meghivjuk, majd vissza adjuk a zenet amit kap
+
+        final Movie supposedToReturn = underTest.createMovie(SOME_MOVIE);
+
+        assertThat(supposedToReturn, equalTo(SOME_MOVIE)); //ennek a kettonek egyeznie kell a mukodeshez tehat azt adjuk vissza a servicebol amit a repository adott
+
+        verify(movieRepository).save(SOME_MOVIE); //ellenorizzuk, hogy a mockkal megtortent-e a megfelelo interakcio(film lementese)
+        verifyNoMoreInteractions(movieRepository); //ellenorizzuk, hogy egyeb interakcio nem tortent
+    }
+
+
+    @Test
+    void retrieveByMovieId() {
+    }
+
+    @Test
+    void retrieveAllMovie() {
+    }
+
+    @Test
+    void update() {
+    }
+
+    @Test
+    void deleteMovieById() {
+    }
+}

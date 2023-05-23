@@ -11,12 +11,12 @@ public interface MovieService {
      *@param movies TODO.
      *@return TODO.
      * */
-    Movie createMovie(Movie movie); //create
+    Movie createMovie(Movie movie);
 
-    Movie retrieveByMovieId(Long id); //read
-    List<Movie> retrieveAllMovie(); // read
+    Movie retrieveByMovieId(Long id);
+    List<Movie> retrieveAllMovie();
 
-    Movie update(Movie movie); // update
+    Movie update(Movie movie);
 
-    void deleteMovieById(Long id); // delete
+    void deleteMovieById(Long id);
 }
