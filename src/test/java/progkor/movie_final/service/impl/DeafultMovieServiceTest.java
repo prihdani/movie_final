@@ -29,20 +29,20 @@ class DeafultMovieServiceTest {
     private MovieService underTest;
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this); //meg kell jelolni, hogy melyik fuggosegbol akarunk mockolt osztalyt
+        MockitoAnnotations.openMocks(this); 
         underTest = new DeafultMovieService(movieRepository);
     }
 
     @Test
     void createMovieShouldDelegateToRepositoryAndReturnSavedMovie() {
-        given(movieRepository.save(SOME_MOVIE)).willReturn(SOME_MOVIE); //a repository save metodusat meghivjuk, majd vissza adjuk a zenet amit kap
+        given(movieRepository.save(SOME_MOVIE)).willReturn(SOME_MOVIE); 
 
         final Movie supposedToReturn = underTest.createMovie(SOME_MOVIE);
 
-        assertThat(supposedToReturn, equalTo(SOME_MOVIE)); //ennek a kettonek egyeznie kell a mukodeshez tehat azt adjuk vissza a servicebol amit a repository adott
+        assertThat(supposedToReturn, equalTo(SOME_MOVIE)); 
 
-        verify(movieRepository).save(SOME_MOVIE); //ellenorizzuk, hogy a mockkal megtortent-e a megfelelo interakcio(film lementese)
-        verifyNoMoreInteractions(movieRepository); //ellenorizzuk, hogy egyeb interakcio nem tortent
+        verify(movieRepository).save(SOME_MOVIE); 
+        verifyNoMoreInteractions(movieRepository); 
     }
 
 
